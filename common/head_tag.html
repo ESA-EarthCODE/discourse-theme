@@ -1,0 +1,17 @@
+<script type="module">
+  import Keycloak from "https://cdn.jsdelivr.net/npm/keycloak-js@26.0.5/lib/keycloak.js";
+  const keycloak = new Keycloak({
+    url: "https://hub.earthcode.eox.at/auth",
+    realm: "nebari",
+    clientId: "discourse",
+  });
+  keycloak
+    .init({
+      onLoad: "check-sso",
+    })
+    .then((authenticated) => {
+      console.log(
+        authenticated ? "User is authenticated" : "User is not authenticated"
+      );
+    });
+</script>
