@@ -10,7 +10,7 @@
   "assets": {
   },
   "color_schemes": {
-    "Solarized Dark": {
+    "ESA": {
       "primary_very_low": "0a2a3d",
       "primary_low": "0f2d40",
       "primary_low_mid": "798C88",
@@ -31,14 +31,14 @@
       "secondary_medium": "81938D",
       "secondary_high": "4E6A6B",
       "secondary_very_high": "0d3143",
-      "secondary": "0d3146",
+      "secondary": "001923",
       "tertiary_low": "003E54",
       "tertiary_medium": "00557A",
       "tertiary": "1a97d5",
       "tertiary_high": "006C9F",
       "quaternary_low": "944835",
       "quaternary": "e45735",
-      "header_background": "0d3146",
+      "header_background": "003247",
       "header_primary": "FCF6E1",
       "highlight_low": "4D6B3D",
       "highlight_medium": "464C33",
