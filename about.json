@@ -1,3 +1,6 @@
 {
-  "name": "ESA"
+  "name": "ESA",
+  "assets": {
+    "esa-bold": "assets/notesesabol.ttf"
+  }
 }
