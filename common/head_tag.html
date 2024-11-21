@@ -8,6 +8,7 @@
   try {
     const authenticated = await keycloak.init({
       onLoad: "check-sso",
+      checkLoginIframe: false,
     });
     if (authenticated) {
       console.log("User is authenticated");
