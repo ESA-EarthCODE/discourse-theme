@@ -3,6 +3,12 @@
   src: url($esa-bold) format("truetype");
 }
 
+:root {
+  --secondary: 001923;
+  --tertiary: 00b19d;
+  --header_background: 003247;
+}
+
 h1,
 h2,
 h3,
