@@ -1,8 +1,7 @@
-<esa-header></esa-header>
+<portal-header></portal-header>
+
 
 <style>
-  @import url("https://unpkg.com/@eox/esa-ui/css/main.css");
-  @import url("https://discourse-earthcode.eox.at/stylesheets/app/assets/stylesheets/common/base/discourse.scss");
   body {
     font-family: Arial, sans-serif;
     font-weight: 300;
@@ -11,4 +10,12 @@
 
 <script type="module">
   import "https://unpkg.com/@eox/esa-ui/components/header.js";
+  customElements.define("portal-header", class extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({mode: "open"}).innerHTML = `
+        <style>@import url("https://unpkg.com/@eox/esa-ui/css/main.css");</style>
+        <esa-header></esa-header>
+      `;
+  })
 </script>
