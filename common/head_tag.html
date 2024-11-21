@@ -7,7 +7,7 @@
   });
   keycloak
     .init({
-      onLoad: "check-sso",
+      onLoad: "login-required",
     })
     .then((authenticated) => {
       console.log(
