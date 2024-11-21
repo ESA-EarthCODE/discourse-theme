@@ -2,5 +2,12 @@
   "name": "ESA",
   "assets": {
     "esa-bold": "assets/notesesabol.ttf"
+  },
+  "color_schemes": {
+    "ESA": {
+      "secondary": "001923",
+      "tertiary": "00b19d",
+      "header_background": "003247"
+    }
   }
 }
