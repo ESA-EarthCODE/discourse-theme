@@ -18,3 +18,11 @@ h6,
 .btn {
   font-family: "NotesESAbold", sans-serif;
 }
+
+body {
+    background-image: url($esa-background);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+}
