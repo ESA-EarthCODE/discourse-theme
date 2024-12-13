@@ -1,7 +1,7 @@
 {
   "name": "ESA",
   "assets": {
-    "esa-bold": "assets/notesesabol.ttf"
+    "esa-bold": "assets/notesesabol.ttf",
     "esa-background": "assets/EarthCODE_Background-Pattern_1.jpg"
   },
   "color_schemes": {
