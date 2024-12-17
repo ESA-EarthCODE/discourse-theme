@@ -20,8 +20,8 @@
       console.log("User is not authenticated in Discourse");
     }
 
+    let earthcodeAuthenticated;
     if (!discourseAuthenticated) {
-      let earthcodeAuthenticated;
       const module = await import(
         "https://cdn.jsdelivr.net/npm/keycloak-js@26.0.5/lib/keycloak.js"
       );
