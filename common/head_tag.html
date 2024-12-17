@@ -1,9 +1,12 @@
 <script type="module">
-  import Keycloak from "https://cdn.jsdelivr.net/npm/keycloak-js@26.0.5/lib/keycloak.js";
   if (
     window.location.href !== "/login" &&
     window.location.href !== "/session/sso"
   ) {
+    const module = await import(
+      "https://cdn.jsdelivr.net/npm/keycloak-js@26.0.5/lib/keycloak.js"
+    );
+    const Keycloak = module.default;
     const keycloak = new Keycloak({
       url: "https://hub.earthcode.eox.at/auth",
       realm: "nebari",
@@ -16,6 +19,7 @@
       });
       if (authenticated) {
         console.log("User is authenticated in EarthCODE");
+        console.log("trying to log in...");
         setTimeout(async () => {
           const currentSession = await fetch(
             "https://discourse-earthcode.eox.at/session/current.json"
@@ -29,7 +33,7 @@
             window.location.href = "/login";
             // window.location.href = "/session/sso"
           }
-        });
+        }, 5000);
       } else {
         console.log("User is not authenticated in EarthCODE");
       }
