@@ -16,7 +16,7 @@
       });
       if (authenticated) {
         console.log("User is authenticated in EarthCODE");
-        setTimeout(() => {
+        setTimeout(async () => {
           const currentSession = await fetch("/session/current.json");
           if (currentSession.ok) {
             console.log("User is authenticated in Discourse");
