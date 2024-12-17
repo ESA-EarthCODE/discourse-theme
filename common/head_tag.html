@@ -5,7 +5,7 @@
     realm: "nebari",
     clientId: "discourse",
   });
-  if (window.location.href !== "/login" && window.location.href === "/session/sso") {
+  if (window.location.href !== "/login" && window.location.href !== "/session/sso") {
     try {
       const authenticated = await keycloak.init({
         onLoad: "check-sso",
