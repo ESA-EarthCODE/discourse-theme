@@ -1,14 +1,14 @@
 <script type="module">
   import Keycloak from "https://cdn.jsdelivr.net/npm/keycloak-js@26.0.5/lib/keycloak.js";
-  if (window.location.href === "/login" || window.location.href === "/session/sso") {
-    return;
-  }
   const keycloak = new Keycloak({
     url: "https://hub.earthcode.eox.at/auth",
     realm: "nebari",
     clientId: "discourse",
   });
   try {
+    if (window.location.href === "/login" || window.location.href === "/session/sso") {
+      return;
+    }
     const authenticated = await keycloak.init({
       onLoad: "check-sso",
       checkLoginIframe: false,
