@@ -1,4 +1,4 @@
-<!-- <script type="module">
+<script type="module">
   import Keycloak from "https://cdn.jsdelivr.net/npm/keycloak-js@26.0.5/lib/keycloak.js";
   const keycloak = new Keycloak({
     url: "https://hub.earthcode.eox.at/auth",
@@ -11,12 +11,19 @@
       checkLoginIframe: false,
     });
     if (authenticated) {
-      console.log("User is authenticated");
+      console.log("User is authenticated in EarthCODE");
+      const currentSession = await fetch("/session/current.json")
+      if (currentSession.ok) {
+        console.log("User is authenticated in Discourse");
+      } else {
+        console.log("User is not authenticated in Discourse. Redirecting...");
+        window.location.href = "/login"
+      }
     } else {
-      console.log("User is not authenticated");
+      console.log("User is not authenticated in EarthCODE");
     }
   } catch (error) {
     console.error("Failed to initialize adapter:", error);
   }
 </script>
- -->
+
