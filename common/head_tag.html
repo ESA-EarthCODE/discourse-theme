@@ -16,7 +16,7 @@
       });
       if (authenticated) {
         console.log("User is authenticated in EarthCODE");
-        // setTimeout(async () => {
+        setTimeout(async () => {
           const currentSession = await fetch("https://discourse-earthcode.eox.at/session/current.json");
           if (currentSession.ok) {
             console.log("User is authenticated in Discourse");
@@ -25,7 +25,7 @@
             window.location.href = "/login";
             // window.location.href = "/session/sso"
           }
-        // }, 5000)
+        }, 5000)
       } else {
         console.log("User is not authenticated in EarthCODE");
       }
