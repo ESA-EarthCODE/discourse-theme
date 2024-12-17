@@ -1,6 +1,6 @@
 <script type="module">
+  import Keycloak from "https://cdn.jsdelivr.net/npm/keycloak-js@26.0.5/lib/keycloak.js";
   if (window.location.href !== "/login" && window.location.href !== "/session/sso") {
-  const { Keycloak } = await import("https://cdn.jsdelivr.net/npm/keycloak-js@26.0.5/lib/keycloak.js");
   const keycloak = new Keycloak({
     url: "https://hub.earthcode.eox.at/auth",
     realm: "nebari",
