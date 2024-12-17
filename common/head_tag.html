@@ -3,42 +3,56 @@
     window.location.href !== "/login" &&
     window.location.href !== "/session/sso"
   ) {
-    const module = await import(
-      "https://cdn.jsdelivr.net/npm/keycloak-js@26.0.5/lib/keycloak.js"
-    );
-    const Keycloak = module.default;
-    const keycloak = new Keycloak({
-      url: "https://hub.earthcode.eox.at/auth",
-      realm: "nebari",
-      clientId: "discourse",
-    });
+    let discourseAuthenticated;
     try {
-      const authenticated = await keycloak.init({
-        onLoad: "check-sso",
-        checkLoginIframe: false,
-      });
-      if (authenticated) {
-        console.log("User is authenticated in EarthCODE");
-        console.log("trying to log in...");
-        setTimeout(async () => {
-          const currentSession = await fetch(
-            "https://discourse-earthcode.eox.at/session/current.json"
-          );
-          if (currentSession.ok) {
-            console.log("User is authenticated in Discourse");
-          } else {
-            console.log(
-              "User is not authenticated in Discourse. Redirecting..."
-            );
-            window.location.href = "/login";
-            // window.location.href = "/session/sso"
-          }
-        }, 5000);
+      console.log("checking current session");
+      const currentSession = await fetch(
+        "https://discourse-earthcode.eox.at/session/current.json"
+      );
+      if (currentSession.ok) {
+        console.log("User is authenticated in Discourse");
+        discourseAuthenticated = true;
       } else {
-        console.log("User is not authenticated in EarthCODE");
+        console.log(
+          "User is not authenticated in Discourse. Redirecting to login..."
+        );
+        // window.location.href = "/login";
       }
     } catch (error) {
-      console.error("Failed to initialize adapter:", error);
+      console.log(
+        "User is not authenticated in Discourse. Redirecting to login..."
+      );
+    }
+
+    if (!discourseAuthenticated) {
+      let erthcodeAuthenticated;
+      const module = await import(
+        "https://cdn.jsdelivr.net/npm/keycloak-js@26.0.5/lib/keycloak.js"
+      );
+      const Keycloak = module.default;
+      const keycloak = new Keycloak({
+        url: "https://hub.earthcode.eox.at/auth",
+        realm: "nebari",
+        clientId: "discourse",
+      });
+      try {
+        const authenticated = await keycloak.init({
+          onLoad: "check-sso",
+          checkLoginIframe: false,
+        });
+        if (authenticated) {
+          console.log("User is authenticated in EarthCODE");
+          erthcodeAuthenticated = true;
+        } else {
+          console.log("User is not authenticated in EarthCODE");
+        }
+      } catch (error) {
+        console.error("Failed to initialize adapter:", error);
+      }
+    }
+
+    if (erthcodeAuthenticated && !discourseAuthenticated) {
+      window.location.href = "/login";
     }
   }
 </script>
