@@ -5,29 +5,28 @@
     realm: "nebari",
     clientId: "discourse",
   });
-  try {
-    if (window.location.href === "/login" || window.location.href === "/session/sso") {
-      return;
-    }
-    const authenticated = await keycloak.init({
-      onLoad: "check-sso",
-      checkLoginIframe: false,
-    });
-    if (authenticated) {
-      console.log("User is authenticated in EarthCODE");
-      const currentSession = await fetch("/session/current.json")
-      if (currentSession.ok) {
-        console.log("User is authenticated in Discourse");
+  if (window.location.href !== "/login" && window.location.href === "/session/sso") {
+    try {
+      const authenticated = await keycloak.init({
+        onLoad: "check-sso",
+        checkLoginIframe: false,
+      });
+      if (authenticated) {
+        console.log("User is authenticated in EarthCODE");
+        const currentSession = await fetch("/session/current.json")
+        if (currentSession.ok) {
+          console.log("User is authenticated in Discourse");
+        } else {
+          console.log("User is not authenticated in Discourse. Redirecting...");
+          // window.location.href = "/login"
+          window.location.href = "/session/sso"
+        }
       } else {
-        console.log("User is not authenticated in Discourse. Redirecting...");
-        // window.location.href = "/login"
-        window.location.href = "/session/sso"
+        console.log("User is not authenticated in EarthCODE");
       }
-    } else {
-      console.log("User is not authenticated in EarthCODE");
+    } catch (error) {
+      console.error("Failed to initialize adapter:", error);
     }
-  } catch (error) {
-    console.error("Failed to initialize adapter:", error);
   }
 </script>
 
